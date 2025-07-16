@@ -1,0 +1,440 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Simple Blog</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fafafa;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 70vh;
+            background: url('https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            color: white;
+            text-align: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #1d4ed8;
+        }
+
+        /* Categories Section */
+        .categories {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: #1f2937;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .category-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Blog Posts Section */
+        .blog-section {
+            padding: 4rem 2rem;
+            background: #f3f4f6;
+        }
+
+        .blog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-category {
+            color: #2563eb;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .blog-title {
+            font-size: 1.25rem;
+            margin: 0.5rem 0;
+            color: #1f2937;
+        }
+
+        .blog-excerpt {
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Follow Section */
+        .follow-section {
+            padding: 4rem 2rem;
+            background: #1f2937;
+            color: white;
+            text-align: center;
+        }
+
+        .follow-form {
+            max-width: 500px;
+            margin: 2rem auto 0;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .follow-form input {
+            flex: 1;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .follow-form button {
+            padding: 0.75rem 1.5rem;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .follow-form button:hover {
+            background: #1d4ed8;
+        }
+
+        /* Social Media Section */
+        .social-section {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .social-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: #f3f4f6;
+            border-radius: 50%;
+            color: #6b7280;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            background: #2563eb;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background: #111827;
+            color: #9ca3af;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .follow-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">SimpleBlog</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#categories">Categories</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Welcome to SimpleBlog</h1>
+            <p>Discover amazing stories, insights, and tips from our community of writers</p>
+            <a href="#blog" class="cta-button">Start Reading</a>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories" id="categories">
+        <h2 class="section-title">Explore Categories</h2>
+        <div class="category-grid">
+            <div class="category-card">
+                <div class="category-icon">📝</div>
+                <h3>Technology</h3>
+                <p>Latest in tech trends</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🌱</div>
+                <h3>Lifestyle</h3>
+                <p>Healthy living tips</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">💼</div>
+                <h3>Business</h3>
+                <p>Growth strategies</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🎨</div>
+                <h3>Design</h3>
+                <p>Creative inspiration</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Posts Section -->
+    <section class="blog-section" id="blog">
+        <div class="blog-container">
+            <h2 class="section-title">Latest Posts</h2>
+            <div class="blog-grid">
+                <article class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Tech" class="blog-image">
+                    <div class="blog-content">
+                        <span class="blog-category">Technology</span>
+                        <h3 class="blog-title">The Future of AI in Web Development</h3>
+                        <p class="blog-excerpt">Exploring how artificial intelligence is revolutionizing the way we build and design websites...</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </article>
+                <article class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Design" class="blog-image">
+                    <div class="blog-content">
+                        <span class="blog-category">Design</span>
+                        <h3 class="blog-title">Minimalist Design Principles</h3>
+                        <p class="blog-excerpt">Less is more. Discover the core principles of minimalist design and how to apply them...</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </article>
+                <article class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Business" class="blog-image">
+                    <div class="blog-content">
+                        <span class="blog-category">Business</span>
+                        <h3 class="blog-title">Startup Growth Strategies</h3>
+                        <p class="blog-excerpt">Proven strategies to scale your startup from zero to hero in today's competitive market...</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Follow Section -->
+    <section class="follow-section">
+        <h2 class="section-title">Stay Updated</h2>
+        <p>Get the latest posts delivered straight to your inbox</p>
+        <form class="follow-form">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </section>
+
+    <!-- Social Media Section -->
+    <section class="social-section">
+        <div class="social-container">
+            <h2 class="section-title">Connect With Us</h2>
+            <p>Follow us on social media for daily updates and behind-the-scenes content</p>
+            <div class="social-icons">
+                <a href="#" class="social-icon" aria-label="Twitter">🐦</a>
+                <a href="#" class="social-icon" aria-label="Instagram">📷</a>
+                <a href="#" class="social-icon" aria-label="LinkedIn">💼</a>
+                <a href="#" class="social-icon" aria-label="YouTube">📺</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 SimpleBlog. All rights reserved.</p>
+    </footer>
+</body>
+</html>
