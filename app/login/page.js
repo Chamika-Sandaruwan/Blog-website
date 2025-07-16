@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
@@ -8,10 +8,10 @@ import { loginUser, clearError } from '../store/features/authSlice';
 import Navigation from '../../components/Navigation';
 
 /**
- * Login Page Component
- * Provides user authentication form with Redux integration
+ * Login Content Component
+ * Contains the user authentication form logic
  */
-export default function LoginPage() {
+function LoginContent() {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -163,5 +163,17 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+/**
+ * Login Page Component
+ * Provides user authentication form with Redux integration
+ */
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <LoginContent />
+    </Suspense>
   );
 }
