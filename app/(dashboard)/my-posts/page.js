@@ -34,7 +34,7 @@ export default function MyPostsPage() {
       const data = await response.json();
       
       if (response.ok) {
-        setPosts(data.posts);
+        setPosts(data); // API returns posts array directly
       } else {
         setError(data.message || 'Failed to fetch posts');
       }

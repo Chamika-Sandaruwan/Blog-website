@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
-import dbConnect from '../../lib/db';
-import User from '../../lib/models/user.model';
+import { connectDB } from '@/app/config/db';
+import { User } from '@/app/models';
 
 /**
  * Helper function to verify JWT token from cookies
@@ -35,7 +35,7 @@ export async function GET(request) {
       );
     }
 
-    await dbConnect();
+    await connectDB();
 
     // Find user by ID (exclude password)
     const user = await User.findById(decoded.userId).select('-password');
@@ -103,7 +103,7 @@ export async function PUT(request) {
       );
     }
 
-    await dbConnect();
+    await connectDB();
 
     // Find user
     const user = await User.findById(decoded.userId);

@@ -3,6 +3,7 @@ import "./globals.css";
 import { ReduxProvider } from "./store/provider";
 import AuthProvider from "../components/AuthProvider";
 import Footer from "../components/Footer";
+import Navigation from "@/components/Navigation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
       >
         <ReduxProvider>
           <AuthProvider>
+          <Navigation />
             <div className="flex-1">
               {children}
             </div>

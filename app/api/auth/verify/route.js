@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
-import dbConnect from '../../../lib/db';
-import User from '../../../lib/models/user.model';
+import { connectDB } from '@/app/config/db';
+import { User } from '@/app/models';
 
 /**
  * GET /api/auth/verify
@@ -10,7 +10,7 @@ import User from '../../../lib/models/user.model';
 export async function GET(request) {
   try {
     // Connect to database
-    await dbConnect();
+    await connectDB();
 
     // Get token from cookies
     const token = request.cookies.get('token')?.value;

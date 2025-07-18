@@ -26,33 +26,48 @@ A modern, full-stack blog platform built with Next.js, Redux, and MongoDB featur
 
 ```
 /app
-├── /api
-│   ├── /auth            # Authentication API routes
-│   │   ├── /login        # User login endpoint
-│   │   ├── /logout       # User logout endpoint
-│   │   └── /register     # User registration endpoint
-│   └── /posts           # Blog posts API routes
-│       └── /[slug]       # Dynamic post routes
-├── /blog
+├── /(dashboard)/        # Dashboard routes (grouped route)
+│   ├── /create-post     # Create post page
+│   ├── /edit-post       # Edit post page
+│   └── /my-posts        # User's posts page
+├── /api                 # API routes
+│   ├── /auth            # Authentication endpoints
+│   │   ├── /login       # User login endpoint
+│   │   ├── /logout      # User logout endpoint
+│   │   ├── /register    # User registration endpoint
+│   │   └── /verify      # Token verification endpoint
+│   ├── /posts           # Blog posts endpoints
+│   │   ├── /[slug]      # Dynamic post routes
+│   │   └── /my-posts    # User's posts endpoint
+│   └── /profile         # User profile endpoint
+├── /blog                # Blog pages
 │   └── /[slug]          # Individual blog post pages
-├── /lib
-│   ├── db.js            # MongoDB connection
-│   └── /models
-│       ├── user.model.js # User schema
-│       └── post.model.js # Post schema
-├── /components
-│   └── Navigation.js    # Navigation component
-├── /store
-│   ├── /features
-│   │   ├── authSlice.js # Authentication state
-│   │   └── postSlice.js # Posts state
+├── /config              # Application configuration
+│   ├── constants.js     # App constants
+│   ├── db.js            # Database configuration
+│   └── metadata.js      # SEO and metadata
+├── /lib                 # Legacy directory (for backward compatibility)
+├── /models              # Mongoose models
+│   ├── Post.js          # Blog post model
+│   ├── User.js          # User model
+│   └── index.js         # Models barrel file
+├── /store               # Redux store
+│   ├── /features        # Redux slices
 │   ├── provider.js      # Redux provider
-│   └── store.js         # Redux store configuration
-├── /create-post         # Create post page
-├── /login               # Login page
-├── /register            # Registration page
+│   └── store.js         # Store configuration
+├── /utils               # Utility functions
+│   ├── auth.js          # Authentication utilities
+│   ├── index.js         # General utilities
+│   └── validation.js    # Form validation utilities
+├── favicon.ico          # Site favicon
+├── globals.css          # Global styles
 ├── layout.js            # Root layout
 └── page.js              # Home page
+/components              # Shared components
+├── AuthProvider.js      # Authentication provider
+├── Footer.js            # Footer component
+├── Navigation.js        # Navigation component
+└── /ui                  # UI components
 /middleware.js           # Route protection middleware
 ```
 

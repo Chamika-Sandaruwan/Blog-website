@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
-import dbConnect from '../../../lib/db';
-import Post from '../../../lib/models/post.model';
+import { connectDB } from '@/app/config/db';
+import { Post } from '@/app/models';
 
 /**
  * Helper function to verify JWT token from cookies
@@ -25,7 +25,7 @@ function verifyToken(request) {
  */
 export async function GET(request, { params }) {
   try {
-    await dbConnect();
+    await connectDB();
 
     const { slug } = params;
 
@@ -64,7 +64,7 @@ export async function GET(request, { params }) {
  */
 export async function PUT(request, { params }) {
   try {
-    await dbConnect();
+    await connectDB();
 
     // Verify authentication
     const decoded = verifyToken(request);
@@ -144,7 +144,7 @@ export async function PUT(request, { params }) {
  */
 export async function DELETE(request, { params }) {
   try {
-    await dbConnect();
+    await connectDB();
 
     // Verify authentication
     const decoded = verifyToken(request);

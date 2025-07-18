@@ -17,7 +17,7 @@ export const fetchPosts = createAsyncThunk(
         return rejectWithValue(data.message || 'Failed to fetch posts');
       }
 
-      return data.posts;
+      return data; // API returns posts array directly
     } catch (error) {
       return rejectWithValue(error.message || 'Network error');
     }

@@ -1,5 +1,5 @@
-import { connectToDatabase } from '../../../lib/mongodb';
-import Post from '../../../lib/models/post.model';
+import { connectDB } from '@/app/config/db';
+import { Post } from '@/app/models';
 import { NextResponse } from 'next/server';
 
 export async function GET(request) {
@@ -7,7 +7,7 @@ export async function GET(request) {
     const { searchParams } = new URL(request.url);
     const category = searchParams.get('category');
     
-    await connectToDatabase();
+    await connectDB();
     
     const query = category ? { category } : {};
     const posts = await Post.find(query)

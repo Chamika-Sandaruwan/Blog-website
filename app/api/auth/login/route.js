@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import dbConnect from '../../../lib/db';
-import User from '../../../lib/models/user.model';
+import { connectDB } from '@/app/config/db';
+import { User } from '@/app/models';
 
 /**
  * POST /api/auth/login
@@ -11,7 +11,7 @@ import User from '../../../lib/models/user.model';
 export async function POST(request) {
   try {
     // Connect to database
-    await dbConnect();
+    await connectDB();
 
     // Parse request body
     const { email, password } = await request.json();

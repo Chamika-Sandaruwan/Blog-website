@@ -6,7 +6,6 @@ import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { fetchPostBySlug, deletePost, clearCurrentPost } from '../../store/features/postSlice';
-import Navigation from '../../../components/Navigation';
 
 /**
  * Individual Blog Post Page Component
@@ -85,7 +84,7 @@ export default function BlogPostPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50">
-        <Navigation />
+        
         <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
@@ -99,7 +98,7 @@ export default function BlogPostPage() {
   if (error || !currentPost) {
     return (
       <div className="min-h-screen bg-gray-50">
-        <Navigation />
+        
         <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="rounded-md bg-red-50 p-4">
@@ -123,7 +122,7 @@ export default function BlogPostPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Navigation />
+     
       
       <article className="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         {/* Back to Blog Link */}

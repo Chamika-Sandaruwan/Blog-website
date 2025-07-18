@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Link from 'next/link';
 import Image from 'next/image';
 import { fetchPosts } from './store/features/postSlice';
-import Navigation from '../components/Navigation';
+
 
 /**
  * Home Page Component
@@ -128,7 +128,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
-      <Navigation />
+     
 
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center justify-center bg-cover bg-center"

@@ -1,5 +1,5 @@
-import { connectDB } from '@/app/lib/mongodb';
-import Post from '@/app/lib/models/post.model';
+import { connectDB } from '@/app/config/db';
+import { Post } from '@/app/models';
 import { NextResponse } from 'next/server';
 
 /**
