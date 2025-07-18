@@ -129,6 +129,23 @@ export const deletePost = createAsyncThunk(
 );
 
 /**
+ * Async thunk for fetching posts by category
+ * Handles API call to get blog posts filtered by category
+ */
+export const fetchPostsByCategory = createAsyncThunk(
+  'posts/fetchByCategory',
+  async (category) => {
+    try {
+      const response = await fetch(`/api/posts${category ? `?category=${category}` : ''}`);
+      if (!response.ok) throw new Error('Failed to fetch posts');
+      return await response.json();
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+
+/**
  * Initial state for posts
  */
 const initialState = {
@@ -136,6 +153,7 @@ const initialState = {
   currentPost: null,
   loading: false,
   error: null,
+  selectedCategory: null,
 };
 
 /**
@@ -152,6 +170,9 @@ const postSlice = createSlice({
     clearCurrentPost: (state) => {
       state.currentPost = null;
     },
+    setSelectedCategory: (state, action) => {
+      state.selectedCategory = action.payload;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -228,9 +249,23 @@ const postSlice = createSlice({
       .addCase(deletePost.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+      })
+      // Fetch posts by category cases
+      .addCase(fetchPostsByCategory.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchPostsByCategory.fulfilled, (state, action) => {
+        state.loading = false;
+        state.posts = action.payload;
+        state.error = null;
+      })
+      .addCase(fetchPostsByCategory.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });
 
-export const { clearError, clearCurrentPost } = postSlice.actions;
+export const { clearError, clearCurrentPost, setSelectedCategory } = postSlice.actions;
 export default postSlice.reducer;
