@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Edit, Trash2, Plus, Calendar, User } from 'lucide-react';
-import Navigation from '../../components/Navigation';
+import Navigation from '../../../components/Navigation';
 
 /**
  * My Posts Page Component

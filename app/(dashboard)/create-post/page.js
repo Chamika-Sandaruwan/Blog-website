@@ -3,8 +3,8 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
-import { createPost, clearError } from '../store/features/postSlice';
-import Navigation from '../../components/Navigation';
+import { createPost, clearError } from '../../store/features/postSlice';
+import Navigation from '../../../components/Navigation';
 
 
 /**
