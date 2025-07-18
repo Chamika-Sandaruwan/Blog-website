@@ -128,7 +128,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
-     
+
 
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center justify-center bg-cover bg-center"
@@ -147,14 +147,20 @@ export default function Home() {
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-10">Explore Categories</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
-            {categories.map((category, index) => (
-              <div key={index} className="bg-white p-6 rounded-xl shadow hover:shadow-lg hover:-translate-y-1 transition cursor-pointer">
-                <div className="text-4xl mb-2">{category.emoji}</div>
-                <h3 className="font-semibold text-lg">{category.name}</h3>
-                <p className="text-sm text-gray-500">{category.description}</p>
-              </div>
-            ))}
+          <div className="overflow-x-auto pb-4">
+            <div className="flex space-x-6 min-w-max">
+              {categories.map((category, index) => (
+                <div
+                  key={index}
+                  className="bg-white p-6 rounded-xl shadow hover:shadow-lg hover:-translate-y-1 transition cursor-pointer flex-shrink-0"
+                  style={{ width: '220px' }}
+                >
+                  <div className="text-4xl mb-2">{category.emoji}</div>
+                  <h3 className="font-semibold text-lg">{category.name}</h3>
+                  <p className="text-sm text-gray-500">{category.description}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
